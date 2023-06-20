@@ -1,9 +1,12 @@
 import './App.css';
-import Test from './components/Test';
+import CRUD from './components/CRUD';
 
 function App() {
   return (
-    <Test/>
+    <div className="App">
+      <CRUD />
+      <p>dupa</p>
+    </div>
   );
 }
 
