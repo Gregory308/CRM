@@ -24,6 +24,6 @@ namespace CRM.Models
         [Required]
         [MaxLength(128)]
         public string Password { get; set; }
-        public ICollection<Notification> Notifications { get; set; }
+        public ICollection<Notification>? Notifications { get; set; }
     }
 }

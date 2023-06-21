@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\CRM.csproj": {}
+    "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\CRM.csproj": {}
   },
   "projects": {
-    "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\CRM.csproj": {
+    "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\CRM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\CRM.csproj",
+        "projectUniqueName": "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\CRM.csproj",
         "projectName": "CRM",
-        "projectPath": "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\CRM.csproj",
+        "projectPath": "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\CRM.csproj",
         "packagesPath": "C:\\Users\\grzes\\.nuget\\packages\\",
-        "outputPath": "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\obj\\",
+        "outputPath": "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,7 +53,13 @@
               "target": "Package",
               "version": "[6.0.16, )"
             },
-            "Microsoft.AspNetCore.Identity.UI": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.16, )"
             },
