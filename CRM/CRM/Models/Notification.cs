@@ -16,10 +16,8 @@ namespace CRM.Models
         [MaxLength(512)]
         public string Description { get; set; }
         [Required]
-        public int CustomerId { get; set; }
-        public Customer? Customer { get; set; }
-        public int? UserId { get; set; }
-        public User? User { get; set; }
+        public List<User> Users { get; } = new();
+
 
     }
 }

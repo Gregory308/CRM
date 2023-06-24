@@ -68,16 +68,38 @@ namespace CRM.Controllers
             return NotFound("Nie znaleziono zgłoszenia");
         }
 
+        [HttpPut]
+        [Route("AddCustToNotification/{idUser:int}/{idNot:int}")]
+        public async Task<ActionResult> AddCustToNotification([FromRoute] int idUser, int idNot)
+        {
+            var notification = await _context.Notifications.FirstOrDefaultAsync(x => x.Id == idNot);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == idUser);
+
+            if (notification != null && user != null)
+            {
+                user.Notifications.Add(notification);
+                _context.SaveChanges();
+                return Ok("Zgłoszenie zostało edytowane");
+            }
+
+            return NotFound("Nie znaleziono zgłoszenia");
+        }
+
         [HttpPost]
 
-        public async Task<ActionResult> AddNotification(Notification notificationNew)
+        public async Task<ActionResult> AddNotification(Notification notificationNew, int id)
         {
 
             if (notificationNew != null)
             {
-                _context.Notifications.Add(notificationNew);
-                _context.SaveChanges();
-                return Ok("Zgłoszenie zostało dodane");
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+                if (user != null)
+                {
+                    user.Notifications.Add(notificationNew);
+                    //_context.Notifications.Add(notificationNew);
+                    _context.SaveChanges();
+                    return Ok("Zgłoszenie zostało dodane");
+                }
             }
 
             return NotFound("Nie dodano zgłoszenia");

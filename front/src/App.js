@@ -1,10 +1,10 @@
 import './App.css';
-import CRUD from './components/CRUD';
+import Register from './components/Register';
 
 function App() {
   return (
     <div className="App">
-      <CRUD />
+      <Register />
       <p>dupa</p>
     </div>
   );

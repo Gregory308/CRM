@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CAHyOObJ4q62XgxN3I/54WpvOCl2nZWEcsjTr8mhz5pQxulqisEWhp2YWfFo4kQ8PRXC8UqPnyWMJd5LTPWI0Q==",
+  "dgSpecHash": "1qQGDGkDItbEFJOPv8Eayt8rMz3A+loqJ52oQXIo6bidvQbqcwTIRGzy6YeHT0cUcy22knjv0P1AM8rzSe5GPw==",
   "success": true,
-  "projectFilePath": "C:\\Semestr_6\\St3\\CRM\\CRM\\CRM\\CRM.csproj",
+  "projectFilePath": "C:\\Semestr_6\\St3\\Projekt\\CRM\\CRM\\CRM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\grzes\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\grzes\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.16\\microsoft.aspnetcore.cryptography.internal.6.0.16.nupkg.sha512",
