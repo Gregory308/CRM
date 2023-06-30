@@ -12,37 +12,12 @@ const CRUD = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    /*
-    const[name, setName] = useState('');
-    const[lastName, setLastName] = useState('');
-    const[email, setEmail] = useState('');
-    const[login, setLogin] = useState('');
-    */
-    const[editID, setEditID] = useState('');
     const[editName, setEditName] = useState('');
     const[editLastName, setEditLastName] = useState('');
     const[editEmail, setEditEmail] = useState('');
+    const[editRole, setEditRole] = useState('');
     const[editLogin, setEditLogin] = useState('');
     const[editPassword, setEditPassword] = useState('');
-
-    const cusdata = [
-        {
-            id : 1,
-            name : "Dupa",
-            lastname : "Dupa",
-            email : "dupna",
-            login : "dupno",
-            password : "123"
-        },
-        {
-            id : 2,
-            name : "asd",
-            lastname : "dsa",
-            email : "dusdapna",
-            login : "dupdsno",
-            password : "1234"
-        }
-    ]
 
     const [data, setData] = useState([]);
 
@@ -82,11 +57,11 @@ const CRUD = () => {
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                    <th>#</th>
                     <th>id</th>
                     <th>name</th>
                     <th>lastName</th>
                     <th>email</th>
+                    <th>role</th>
                     <th>login</th>
                     <th>password</th>
                     <th>Actions</th>
@@ -98,11 +73,11 @@ const CRUD = () => {
                     data.map((item, index) => {
                         return(
                             <tr key={index}>
-                                <td>{index+ 1}</td>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.lastName}</td>
                                 <td>{item.email}</td>
+                                <td>{item.role}</td>
                                 <td>{item.login}</td>
                                 <td>{item.password}</td>
                                 <td colSpan = {2}>
@@ -135,6 +110,10 @@ const CRUD = () => {
                             <Col>
                                 <input type="email" className="form-control" placeholder="E-mail" 
                                 value={editEmail} onChange = {(e) => setEditEmail(e.target.value)} />
+                            </Col>
+                            <Col>
+                                <input type="role" className="form-control" placeholder="Role" 
+                                value={editRole} onChange = {(e) => setEditRole(e.target.value)} />
                             </Col>
                             <Col>
                                 <input type="text" className="form-control" placeholder="Login" 

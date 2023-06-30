@@ -18,7 +18,7 @@ namespace CRM.Controllers
         [HttpGet]
         public async Task<ActionResult> GetNotifications()
         {
-            var notifications = await _context.Notifications.ToListAsync();
+            var notifications = _context.Notifications.Include(d => d.Users);
             return Ok(notifications);
         }
 
@@ -53,14 +53,39 @@ namespace CRM.Controllers
         }
 
         [HttpPut]
-        [Route("{id:int}")]
-        public async Task<ActionResult> UpdateNotification([FromRoute] int id, Notification notificationUpdated)
+        public async Task<ActionResult> UpdateNotification(NotificationEdit notificationUpdated)
         {
-            var notification = await _context.Notifications.FirstOrDefaultAsync(x => x.Id == id);
+            var notification = _context.Notifications
+                .Include(d => d.Users)
+                .FirstOrDefault(x => x.Id == notificationUpdated.Id);
 
             if (notification != null)
             {
-                notification.Description = notificationUpdated.Description;
+                if (notificationUpdated.Title.Length > 0)
+                {
+                    notification.Title = notificationUpdated.Title;
+                }
+                if (notificationUpdated.Description.Length > 0)
+                {
+                    notification.Description = notificationUpdated.Description;
+                }
+                if (notificationUpdated.UserIdToRemove != 0)
+                {
+                    var userToRemove = await _context.Users.FirstOrDefaultAsync(u => u.Id == notificationUpdated.UserIdToRemove);
+                    if (userToRemove != null)
+                    {
+                        notification.Users.Remove(userToRemove);
+                    }
+                }
+                if (notificationUpdated.UserIdToAdd != 0) 
+                {
+                    var userToAdd = await _context.Users.FirstOrDefaultAsync(x => x.Id == notificationUpdated.UserIdToAdd);
+                    if (userToAdd != null)
+                    {
+                        notification.Users.Add(userToAdd);
+                    }
+                }
+
                 _context.SaveChanges();
                 return Ok("Zgłoszenie zostało edytowane");
             }
@@ -86,7 +111,6 @@ namespace CRM.Controllers
         }
 
         [HttpPost]
-
         public async Task<ActionResult> AddNotification(Notification notificationNew, int id)
         {
 

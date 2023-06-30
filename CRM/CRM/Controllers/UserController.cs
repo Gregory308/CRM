@@ -38,7 +38,14 @@ namespace CRM.Controllers
 
             return NotFound("Nie znaleziono użytkownika");
         }
-        
+
+        [HttpGet]
+        public async Task<ActionResult> GetUsers()
+        {
+            var users = await _context.Users.ToListAsync();
+            return Ok(users);
+        }
+
         [HttpGet]
         [Route("userNotifications/{id:int}")]
         public async Task<ActionResult> GetUserNotifications([FromRoute] int id)
@@ -103,6 +110,18 @@ namespace CRM.Controllers
             }
 
             return NotFound("Nie znaleziono użytkownika");
+        }
+
+        [HttpPost]
+        [Route("GetLogInUser")]
+        public async Task<ActionResult> GetLogInUser(LoginRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(d => d.Login == request.Login && d.Password == request.Password);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound("Błędny login lub hasło");
         }
     }
 }
