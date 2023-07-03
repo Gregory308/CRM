@@ -50,7 +50,6 @@ namespace CRM.Controllers
         [Route("userNotifications/{id:int}")]
         public async Task<ActionResult> GetUserNotifications([FromRoute] int id)
         {
-            //var dupa = _context.User.Where(c => c.Id == id).Include(c => c.Notifications);
             var notificationPerUser = _context.Users.Where(d => d.Id == id).SelectMany(d => d.Notifications);
             if (notificationPerUser != null)
             {

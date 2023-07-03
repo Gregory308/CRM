@@ -21,7 +21,16 @@ namespace CRM.Controllers
             var notifications = _context.Notifications.Include(d => d.Users);
             return Ok(notifications);
         }
-
+        
+        [HttpGet]
+        [Route("GetNotificationsForUser/{userId:int}")]
+        public async Task<ActionResult> GetNotificationsForUser(int userId)
+        {
+            var notifications = _context.Notifications.Include(d => d.Users)
+                .Where(d => d.Users.Any(user => user.Id == userId)).ToList();
+            return Ok(notifications);
+        }
+        
         [HttpGet]
         [Route("{id:int}")]
         public async Task<ActionResult> GetNotification([FromRoute] int id)
@@ -111,14 +120,15 @@ namespace CRM.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddNotification(Notification notificationNew, int id)
+        public async Task<ActionResult> AddNotification(AddNotification addNotification)
         {
 
-            if (notificationNew != null)
+            if (addNotification != null)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == addNotification.UserId);
                 if (user != null)
                 {
+                    Notification notificationNew = new Notification(addNotification.Title,addNotification.Description);
                     user.Notifications.Add(notificationNew);
                     //_context.Notifications.Add(notificationNew);
                     _context.SaveChanges();

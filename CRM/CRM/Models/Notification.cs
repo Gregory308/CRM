@@ -18,6 +18,10 @@ namespace CRM.Models
         [Required]
         public List<User> Users { get; } = new();
 
-
+        public Notification(string title, string description)
+        {
+            this.Title = title; 
+            this.Description = description;
+        }
     }
 }
